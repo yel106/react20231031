@@ -9,6 +9,7 @@ function App() {
         <br /> lorem ipsum dolor.
       </p>
       <MyComp />
+      <MyCompo2 />
     </div>
   );
 }
@@ -24,6 +25,24 @@ function MyComp() {
       {/* fragment는 <></>  */}
       <h1>HI COMPONENT</h1>
       <h2>hello</h2>
+    </>
+  );
+}
+
+function MyCompo2() {
+  let name = "손흥민";
+  let age = 33;
+
+  // {}: jsx에서 js 코드 작성하기 위한 기호
+  // {}를 쓰면 자바스크립트 코드로 인식함
+  return (
+    <>
+      <h1>hello react</h1>
+      <h1>hello {name}</h1>
+      <h1>{age} years</h1>
+      <h1>{age * 2} double years</h1>
+      <h1>{name + "선수"}</h1>
+      {/* 그래서 주석이 이렇게 생김 */}
     </>
   );
 }
