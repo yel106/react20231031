@@ -1,27 +1,23 @@
 function App() {
-  // 1~100
-  const number = Math.ceil(Math.random() * 100);
-  const isLarge = number > 50;
-  const isSmall = number <= 50;
+  // JSX가 JS 코드로 변환됨
+  // 따라서 JS 키워드를 사용할 수 없음
 
   return (
     <>
-      <h1>난수: {number}</h1>
-      <div>{number > 50 ? "큰 수" : "작은 수"}</div>
-      <div>{number > 50 ? <BigImage /> : <SmallImage />}</div>
-      <div>{isLarge && <h1>큰 수이다</h1>}</div> {/* isLarge이면 큰수이다 */}
-      <div>{isLarge || <h1>작은 수이다.</h1>} </div>{" "}
-      {/* isLarge가 아니면 작은수이다 */}
+      {/* class 속성은 className으로 작성 해야함 */}
+      <div className="header">lorem ipsum dolor.</div>.
+      <div className="error">lorem ipsum dolor.</div>.
+      {/* for 속성은 htmlFor로 작성*/}
+      <div>
+        <label htmlFor="nameInput">이름</label>
+        <input type="text" id="nameInput" />
+      </div>
+      <div>
+        <label htmlFor="ageInput"></label>
+        <input type="text" id="ageInput" />
+      </div>
     </>
   );
-}
-
-function BigImage() {
-  return <h1>큰 이미지</h1>;
-}
-
-function SmallImage() {
-  return <h3>작은 이미지</h3>;
 }
 
 export default App;
