@@ -1,20 +1,20 @@
 function App() {
-  const num1 = Math.ceil(Math.random() * 6);
-  const num2 = Math.ceil(Math.random() * 6);
-
-  let messageClassName = "lose";
-  let message = "다시 던져 보세요";
-
-  if (num1 === num2) {
-    messageClassName = "win";
-    message = "당첨";
-  }
+  const myStyle = {
+    color: "orange",
+    backgroundColor: "gold", // background-color라고 쓰면 안되고 loswerCamelCase법으로 써야함
+    fontSize: "70px",
+    textAlign: "center",
+  }; //js object 자바스크립에서 객체만드는법
 
   return (
     <>
-      <h1>1번 주사위 : {num1}</h1>
-      <h1>2번 주사위 : {num2}</h1>
-      <h1 className={messageClassName}> {message} </h1>
+      {/* style 속성은 객체로 주어야 함*/}
+      <div style={myStyle}>Lorem ipsum dolor.</div>
+      <div
+        style={{ color: "red", backgroundColor: "yellow", fontSize: "30px" }}
+      >
+        Lorem ipsum dolor.
+      </div>
     </>
   );
 }
