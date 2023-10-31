@@ -1,4 +1,5 @@
 
+
 function App() {
   return (
     <div>
@@ -32,12 +33,13 @@ function MyComponent1() {
 function MyComponent2() {
   return (
       <>
-        <p>lorem ipsum alswjf alswjf</p>
-        <ul>
-          <li>lorem</li>
-          <li>ipsum</li>
-          <li>dolor</li>
-        </ul>
+          {/*   p>lorem5^ul>li*3>lorem1   */}
+          <p>Lorem ipsum dolor sit amet.</p>
+          <ul>
+              <li>Lorem.</li>
+              <li>Sunt?</li>
+              <li>Commodi!</li>
+          </ul>
       </>
   )
 }
