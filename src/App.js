@@ -19,5 +19,10 @@ function App() {
     </>
   );
 }
-
-export default App;
+export function MyElem() {
+  return (
+    <div>
+      <h1></h1>
+    </div>
+  );
+}
