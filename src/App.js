@@ -1,4 +1,4 @@
-import MyBox, { address } from "./component/MyBox"; /*named export*/
+import MyBox, { address } from "./component/MyBox"; /*named export */
 import MyElem, {
   address as myAddress,
 } from "./component/MyElem"; /*default export*/
