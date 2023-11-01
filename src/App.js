@@ -1,16 +1,11 @@
-import MyBox, { address } from "./component/MyBox"; /*named export */
-import MyElem, {
-  address as myAddress,
-} from "./component/MyElem"; /*default export*/
+import { MyBox } from "./component/MyBox";
+import { MyComp } from "./component/MyComp";
 
-//as로 named import 값을 import할 때 별칭을 줄 수 있음
-
+// chakraui css libarary >주로 이걸사용
 function App() {
   return (
     <>
-      <h1>{address}</h1>
-      <h1>{myAddress}</h1>
-      <MyElem />
+      <MyComp />
       <MyBox />
     </>
   );
