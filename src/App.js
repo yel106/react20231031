@@ -1,28 +1,18 @@
-import {
-  MyBox,
-  MyContainer,
-  MyElem,
-  name,
-  address,
-  person,
-} from "./component/MyBox";
+import MyBox, { address } from "./component/MyBox"; /*named export*/
+import MyElem, {
+  address as myAddress,
+} from "./component/MyElem"; /*default export*/
+
+//as로 named import 값을 import할 때 별칭을 줄 수 있음
 
 function App() {
-  console.log("name", name);
-  console.log("address", address);
-  console.log("person", person);
   return (
     <>
-      <MyBox />
+      <h1>{address}</h1>
+      <h1>{myAddress}</h1>
       <MyElem />
-      <MyContainer />
+      <MyBox />
     </>
   );
 }
-export function MyElem() {
-  return (
-    <div>
-      <h1></h1>
-    </div>
-  );
-}
+export default App;
