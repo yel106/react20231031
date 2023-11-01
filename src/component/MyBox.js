@@ -5,9 +5,5 @@ export function MyBox() {
     <>
       <h1 className={mycss.boxClass}> Lorem ipsum dolor sit amet.</h1>
     </>
-
-
-
-
   );
 }
