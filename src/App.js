@@ -1,27 +1,16 @@
 import React, { useState } from "react";
-import { Box, Button } from "@chakra-ui/react";
+import { Input } from "@chakra-ui/react";
 
 function App(props) {
-  const [number, setNumber] = useState(0);
+  const [message, setMessage] = useState("");
 
-  function handlePlusButtonClick() {
-    setNumber(number + 1);
-  }
-
-  function handleMinusButtonClick() {
-    setNumber(number - 1);
+  function handleChange(e) {
+    setMessage(e.target.value);
   }
   return (
     <div>
-      <input type="number" value={number} />
-      <Box>
-        <Button onClick={handlePlusButtonClick}>+</Button>
-        <Button onClick={handleMinusButtonClick}>-</Button>
-      </Box>
-      <Box>
-        <Button onClick={() => setNumber(number + 1)}>+</Button>
-        <Button onClick={() => setNumber(number - 1)}>-</Button>
-      </Box>
+      {/* value랑 onChage는 둘 다 같이 쓰는게 나음 */}
+      <Input type="text" value={message} onChange={handleChange} />
     </div>
   );
 }
