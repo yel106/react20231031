@@ -2,8 +2,8 @@ import { Box } from "@chakra-ui/react";
 import { useState } from "react";
 
 function App() {
-  const [number1, setNumber1] = useState("");
-  const [number2, setNumber2] = useState("");
+  const [number1, setNumber1] = useState(0);
+  const [number2, setNumber2] = useState(0);
   function handleInput1Change(e) {
     setNumber1(Number(e.target.value));
   }
