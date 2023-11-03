@@ -1,25 +1,29 @@
 import React from "react";
-import { Card, CardBody } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 
-function MyBox({ color, bg, align, size, children }) {
+function MyComp({ to, someProp }) {
+  someProp();
+
   return (
     <>
-      <Card color={color} bg={bg} textAlign={align} fontSize={size}>
-        <CardBody>{children} </CardBody>
-      </Card>
+      <div>
+        <a href={to[0]}>link!!!</a>
+      </div>
+      <div>
+        <Button onClick={someProp}>버튼</Button>
+      </div>
     </>
   );
 }
+
 function App(props) {
+  function func1() {
+    console.log("func1 실행됨");
+  }
+
   return (
     <div>
-      <MyBox color={"pink"} bg={"black"} align={"center"} size={"20px"}>
-        연습해보기
-      </MyBox>
-      <MyBox color={"yellow"} bg={"green"} align={"center"} size={"30px"}>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo,
-        modi!
-      </MyBox>
+      <MyComp to={["https://www.naver.com"]} someProp={func1}></MyComp>
     </div>
   );
 }
