@@ -1,22 +1,33 @@
-import { Box } from "@chakra-ui/react";
+import React from "react";
+import { Box, Button, Center } from "@chakra-ui/react";
 
-function App() {
+function App(props) {
   function handleClick(e) {
-    // a 태그 클릭시 naver로 이동하도록 하기
-    e.preventDefault();
-
-    /*  location: js에서 URL 정보를 가져오는 객체임 */
-    /* lacation.href, location.protocol, location.host 등이 있음
-     * location.href는 프로퍼티 값이 변경되는 경우 새로운 페이지로 이동함.*/
-    window.location.href = "https://www.naver.com";
+    // event bubbling 막는 메소드
+    e.stopPropagation();
+    console.log(e.target.className);
   }
-
   return (
-    <>
-      <a href="https://www.daum.net" onClick={handleClick}>
-        다음으로 이동
-      </a>
-    </>
+    <Center
+      onClick={handleClick}
+      className="outerBox"
+      w="200px"
+      h="200px"
+      bg={"gold"}
+    >
+      <Center
+        onClick={handleClick}
+        className="innerBox"
+        w={"100px"}
+        h={"100px"}
+        bg={"blue"}
+      >
+        <Button onClick={handleClick} className="button" colorScheme="yellow">
+          Button
+        </Button>
+      </Center>
+    </Center>
   );
 }
+
 export default App;
