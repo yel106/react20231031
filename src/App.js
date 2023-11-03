@@ -1,24 +1,29 @@
-import { Box } from "@chakra-ui/react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { Box, Button } from "@chakra-ui/react";
 
-function App() {
-  const [number1, setNumber1] = useState(0);
-  const [number2, setNumber2] = useState(0);
-  function handleInput1Change(e) {
-    setNumber1(Number(e.target.value));
+function App(props) {
+  const [number, setNumber] = useState(0);
+
+  function handlePlusButtonClick() {
+    setNumber(number + 1);
   }
 
-  function handleInput2Change(e) {
-    setNumber2(Number(e.target.value));
+  function handleMinusButtonClick() {
+    setNumber(number - 1);
   }
-
-  let result = number1 + number2;
-
   return (
-    <>
-      <input type="number" onChange={handleInput1Change} /> +
-      <input type="number" onChange={handleInput2Change} />= {result}
-    </>
+    <div>
+      <input type="number" value={number} />
+      <Box>
+        <Button onClick={handlePlusButtonClick}>+</Button>
+        <Button onClick={handleMinusButtonClick}>-</Button>
+      </Box>
+      <Box>
+        <Button onClick={() => setNumber(number + 1)}>+</Button>
+        <Button onClick={() => setNumber(number - 1)}>-</Button>
+      </Box>
+    </div>
   );
 }
+
 export default App;
