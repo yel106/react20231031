@@ -24,8 +24,13 @@ function App(props) {
         }}
       >
         Button3
-      </MyComp>{" "}
+      </MyComp>
       {/* fun2라는 함수명을 넣는대신 arrow function을 바로 넣어서 사용 */}
+
+      {/* 한 줄 일 땐 {} 생략 가능 */}
+      <MyComp executeClick={() => console.log("arrow function 실행 333")}>
+        Button4
+      </MyComp>
     </div>
   );
 }
