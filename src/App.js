@@ -13,8 +13,12 @@ function MyBox({ color, bg, align, size, children }) {
 function App(props) {
   return (
     <div>
-      <MyBox color={"orange"} bg={"black"} align={"center"} size={"20px"}>
+      <MyBox color={"pink"} bg={"black"} align={"center"} size={"20px"}>
         연습해보기
+      </MyBox>
+      <MyBox color={"yellow"} bg={"green"} align={"center"} size={"30px"}>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo,
+        modi!
       </MyBox>
     </div>
   );
