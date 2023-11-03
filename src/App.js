@@ -1,28 +1,22 @@
-import { Box, Button } from "@chakra-ui/react";
-import * as PropTypes from "prop-types";
+import React from "react";
+import { Card, CardBody } from "@chakra-ui/react";
 
-function MyLink({ to, children }) {
+function MyBox({ color, bg, align, size, children }) {
   return (
     <>
-      <a href={to}> {children} </a>
-      {/* 버튼으로 만든느 방법 */}
-      <Button as="a" href={to} colorScheme="blue">
-        {children}
-      </Button>
+      <Card color={color} bg={bg} textAlign={align} fontSize={size}>
+        <CardBody>{children} </CardBody>
+      </Card>
     </>
   );
 }
-
-function App() {
+function App(props) {
   return (
-    <>
-      <MyLink to="https://www.naver.com">naver 로</MyLink>
-      <MyLink to="https://www.daum.net">daum으로</MyLink>
-      {/*
-    <a href="https://www.naver.com">naver로 </a>
-    <a href="https://www.daum.net">daum으로 </a>
-    */}
-    </>
+    <div>
+      <MyBox color={"orange"} bg={"black"} align={"center"} size={"20px"}>
+        연습해보기
+      </MyBox>
+    </div>
   );
 }
 
