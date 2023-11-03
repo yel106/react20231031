@@ -1,36 +1,26 @@
 import React from "react";
 import { Button } from "@chakra-ui/react";
 
-function MyComp({ children, executeClick }) {
-  return <Button onClick={executeClick}>{children}</Button>;
-}
-
 function App(props) {
-  function func1() {
-    console.log("func1 실행");
+  // 함수명 작성 관습
+  // handle이벤트명  앞에 handle이라고 써줌. 클릭할때 일어나는일이니까 handleClick
+  function handleClick() {
+    console.log("second");
+  }
+  function handleMouseEnter() {
+    console.log("third");
   }
 
-  let func2 = () => {
-    console.log("arrow function 실행 111");
-  };
-
+  function handleMouseLeave() {
+    console.log("4th");
+  }
   return (
     <div>
-      <MyComp executeClick={func1}>Button1</MyComp>
-      <MyComp executeClick={func2}>Button2</MyComp>
-      <MyComp
-        executeClick={() => {
-          console.log("arrow function 실행 222");
-        }}
-      >
-        Button3
-      </MyComp>
-      {/* fun2라는 함수명을 넣는대신 arrow function을 바로 넣어서 사용 */}
-
-      {/* 한 줄 일 땐 {} 생략 가능 */}
-      <MyComp executeClick={() => console.log("arrow function 실행 333")}>
-        Button4
-      </MyComp>
+      <Button onClick={() => console.log("first")}>버튼1</Button>
+      <Button onClick={handleClick}>버튼2</Button>
+      <Button onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        버튼3
+      </Button>
     </div>
   );
 }
