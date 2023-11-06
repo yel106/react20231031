@@ -1,20 +1,21 @@
 import React, { useState } from "react";
-import { Input, Text } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 
 function App(props) {
-  const [number, setNumber] = useState(0);
+  const [text, setText] = useState("hello");
 
-  const isOdd = number % 2 == 1;
+  console.log(text);
 
-  function handleInputChange(e) {
-    setNumber(Number(e.target.value));
+  function handleButtonClick() {
+    // text 라는 state 값 변경
+    // text = "message"; // 이렇게 써도 안바뀜. 리액트가 상태를 변경할지 말지 결정하기 때문에 setText를 이용해서 변경해야함
+    setText("greeting");
   }
+
   return (
     <div>
-      <Input type="number" onChange={handleInputChange} />
-      <Text>{number}</Text>
-      <Text>{isOdd && "홀수"}</Text>
-      <Text>{isOdd || "짝수"}</Text>
+      <Button onClick={handleButtonClick}>상태 변경!</Button>
+      <p>{text}</p>
     </div>
   );
 }
