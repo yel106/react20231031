@@ -11,8 +11,16 @@ function App(props) {
   }); /* 객체를 넣어봄*/
 
   function handleNumberObjectChange() {
-    numberObject.number = numberObject.number + 1;
-    setNumberObject(numberObject);
+    //참조값은 같은데 property만 달라졌으니까 같은 객체라고 생각함.
+    // 그래서  re-rendering을 안 함. 객체를 그냥 쓰면 안되고 복사해서 써야함.
+    // 상태를 변경하는 객체라면 let c =d 이런식으로 쓰면 안되고 자바스크립트에서 복사하려면
+    // numberObject.number = numberObject.number + 1;
+    // setNumberObject(numberObject);
+
+    //복사해서 써야함
+    const newNumberObject = { ...numberObject };
+    newNumberObject.number = newNumberObject.number + 1;
+    setNumberObject(newNumberObject);
   }
 
   return (
@@ -22,6 +30,7 @@ function App(props) {
         {/* number+1 은 이전과 다르다고 리액트가 판단해서 클릭시 숫자가 늘어남 */}
         <Text>{number}</Text>
       </Box>
+
       <Box>
         <Button onClick={handleNumberObjectChange}> number 객체 변경</Button>
         <Text>{numberObject.number}</Text>
