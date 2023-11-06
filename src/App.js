@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Input, List, ListItem, Button } from "@chakra-ui/react";
 
 function App(props) {
-  const [coffees, setCoffees] = useState(["라떼"]);
+  const [coffees, setCoffees] = useState(["라떼"]); //배열 객체 들어있음
   const [text, setText] = useState("");
 
   function handleButtonClick() {
