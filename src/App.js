@@ -28,7 +28,6 @@ function App(props) {
         {username}의 email은 {email} 입니다.
       </Text>
 
-
       {/* arrow function이용 */}
       <Box>
         <Input
