@@ -1,62 +1,34 @@
-import React from "react";
-import { Box, List, ListItem } from "@chakra-ui/react";
-function App(props) {
-  const arr = ["pizza", "돈까스", "햄버거", "김치찌개"];
-  const arr2 = ["손흥민", "이강인", "김민재"];
-  const arr3 = ["라떼", "에스프레소", "카푸치노"];
-  const arr4 = [
-    { id: 0, name: "라떼" },
-    { id: 1, name: "에스프레소" },
-    { id: 2, name: "카푸치노" },
-  ];
+import React, { useState } from "react";
+import { Input, List, ListItem, Button } from "@chakra-ui/react";
 
-  const listItems = arr.map((item, index) => (
-    <ListItem key={index}>{item}</ListItem>
-  ));
+function App(props) {
+  const [coffees, setCoffees] = useState(["라떼"]);
+  const [text, setText] = useState("");
+
+  function handleButtonClick() {
+    // 직전 상태 배열을 조작하면 안되고
+    // coffees.push(text);
+    // setCoffees(coffees); // 객체인 배열이 들어있어서 같은 객체라서 참조값이 같으니까 setCoffees해도 안 바뀜
+    // console.log(coffees);
+
+    // 새 배열을 만들어서 set state 해야 함
+    const newCoffees = [...coffees];
+    newCoffees.push(text);
+    setCoffees(newCoffees); // 객체인 배열이 들어있어서 같은 객체라서 참조값이 같으니까 setCoffees해도 안 바뀜
+  }
 
   return (
     <div>
-      <Box mb={3}>
-        <List>{listItems}</List>
-      </Box>
+      <Input value={text} onChange={(e) => setText(e.target.value)} />
+      <Button onClick={handleButtonClick}>추가</Button>
 
-      <Box mb={3}>
-        <List>
-          {/*  손흥민, 이강인, 김민재
-           */}
-          {arr2.map((e, index) => (
-            <ListItem key={index}>{e}</ListItem>
-          ))}
-        </List>
-      </Box>
-
-      <Box mb={3}>
-        <List>
-          {/*  세번째 배열들이 ListItem으로 출력되도록 */}
-          {arr3.map((e, i) => (
-            <ListItem key={i}>{e}</ListItem>
-          ))}
-        </List>
-      </Box>
-
-      <Box>
-        <List>
-          {arr3.map((e, j) => (
-            <ListItem key={j}>{e}</ListItem>
-          ))}
-        </List>
-      </Box>
+      <List>
+        {coffees.map((c, index) => (
+          <ListItem key={index}>{c}</ListItem>
+        ))}
+      </List>
     </div>
-
-    //위와 같은 결과가 나옴
-    // <div>
-    //   <List>
-    //     <ListItem>{arr[0]}</ListItem>
-    //     <ListItem>{arr[1]}</ListItem>
-    //     <ListItem>{arr[2]}</ListItem>
-    //     <ListItem>{arr[3]}</ListItem>
-    //   </List>
-    // </div>
   );
 }
+
 export default App;
