@@ -1,28 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { Button, Text } from "@chakra-ui/react";
+import axios from "axios";
 
 function App(props) {
-  const [number, setNumber] = useState(0);
-
-  console.log("useEffect 밖의 로그 ", number); //이건 렌더링 할 때마다 실행됨
-
-  //useEffect
-  //컴포넌트 외부시스템과 작업할 때
-  // 주로 ajax로 데이터 가져올 때 사용
-
-  // 첫번째 파라미터: 실행할 함수
-  // 두번째 파라미터: 첫번째 파라미터를 실행 시키는 값, 빈 배열이면 초기 렌더링 때만 실행됨
+  const [myState, setMyState] = useState("");
 
   useEffect(() => {
-    console.log("이펙트의 첫번째 파라미터 함수 실행됨", number);
+    //컴포넌트가 실행될때 처음 그려짐. axois요청이 날아감. 우리가 응답하는걸 안 만들어서 500코드 에러가 뜸.
+    axios
+      // 앞에 빠진 localhost:8080은 아까 프록시로 설정해둠
+      // api/main/sub1로 요청을 했고, 거기서 "hello boot app!!"을 return했기 때문에
+      // 로그창에 hello boot app라고 뜸
+      //setMyState(data) 라고 써야 재렌더링 될때 myState의 내용이 바뀜
+      .get("/api/main1/sub1")
+      .then((response) => response.data)
+      .then((data) => setMyState(data))
+      .catch((error) => console.log(error));
   }, []);
 
-  return (
-    <div>
-      <Button onClick={() => setNumber(number + 1)}>증가</Button>
-      <Text>{number}</Text>
-    </div>
-  );
+  return <div>{myState}</div>;
 }
 
 export default App;
