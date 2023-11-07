@@ -15,6 +15,7 @@ function MyInput({ address, onChange }) {
 }
 
 function MyText({ address }) {
+
   return (
     <Box>
       <Text>{address}</Text>
