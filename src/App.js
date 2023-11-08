@@ -1,64 +1,81 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
-  Link,
   Outlet,
   Route,
   RouterProvider,
   useNavigate,
+  useParams,
+  useSearchParams,
 } from "react-router-dom";
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { Box, Button, Text } from "@chakra-ui/react";
+import axios from "axios";
 
-function HomeComponent() {
-  //경로 이동시 useNavigate hook 사용 해야 함
+function Home() {
   const navigate = useNavigate();
-
   return (
     <Box>
-      <Flex gap={"10px"}>
-        <Box>
-          {/*  경로 이동 시 javascript 코드를 그냥 쓰면 안 됨*/}
-          <Button onClick={() => (window.location.href = "/apath")}>
-            a로 가기
-          </Button>
-        </Box>
+      <Box>
+        <Button onClick={() => navigate("/path1?id=2")}>1번 고객보기</Button>
+        <Button onClick={() => navigate("/path1?id=4")}>2번 고객보기</Button>
+        <Button onClick={() => navigate("/path1?id=6")}>3번 고객보기</Button>
 
-        <Button onClick={() => (window.location.href = "/bpath")}>
-          b로 가기
-        </Button>
-
-        <Box>
-          <Button onClick={() => navigate("/apath")}>a로 가기</Button>
-        </Box>
-        <Box>
-          <Button onClick={() => navigate("/bpath")}>b로 가기</Button>
-        </Box>
-      </Flex>
-      공통된 요소들
-      <Outlet />
+        <Button onClick={() => navigate("/path2/seoul")}>seoul 보기</Button>
+        <Button onClick={() => navigate("/path2/busan")}>busan 보기</Button>
+      </Box>
+      <Box>
+        <Outlet />
+      </Box>
     </Box>
   );
 }
 
 function AComp() {
-  return <Box>에이 컴포넌트</Box>;
+  //query stirng 을 얻기
+  const [customer, setCustomer] = useState(null);
+  const [searchParams] = useSearchParams();
+  // console.log(searchParams);
+  // console.log(searchParams.get("id"));
+  // console.log(searchParams.toString());
+
+  useEffect(() => {
+    axios
+      .get("/api/main1/sub4?" + searchParams.toString())
+      .then((response) => setCustomer(response.data));
+  }, [searchParams]);
+
+  return (
+    <Box>
+      {customer && (
+        <Text>
+          {searchParams.get("id")} 번 고객명 {customer.customerName}
+        </Text>
+      )}
+    </Box>
+  );
 }
 
 function BComp() {
-  return <Box>비 컴포넌트</Box>;
+  //dynamic param을 얻는 hook
+  const params = useParams();
+
+  console.log(params);
+
+  console.log(params.address);
+  return <Box>비 컴포넌트 {params.address}</Box>;
 }
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<HomeComponent />}>
-      <Route path="apath" element={<AComp />} />{" "}
-      {/* AComp가 HomeComponent로 밀어넣어짐 */}
-      <Route path="bpath" element={<BComp />} />
+    <Route path="/" element={<Home />}>
+      <Route path="path1" element={<AComp />} />
+
+      {/* dynamic param: spring web mvc의  path variable과 유사 */}
+      <Route path="path2/:address" element={<BComp />} />
     </Route>,
   ),
 );
-
 function App(props) {
   return <RouterProvider router={routes} />;
 }
