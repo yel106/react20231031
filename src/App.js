@@ -3,9 +3,17 @@ import { Select, Box, Text, Spinner } from "@chakra-ui/react";
 import axios from "axios";
 
 function App(props) {
+  const [customerIdList, setCustomerIdList] = useState([]);
   const [customerId, setCustomerId] = useState(0);
   const [customer, setCustomer] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    //고객 번호들 가져오기, 번호는 처음 가져올때만 실행
+    axios
+      .get("/api/main1/sub6")
+      .then((response) => setCustomerIdList(response.data));
+  }, []);
 
   useEffect(() => {
     setIsLoading(true);
@@ -23,6 +31,10 @@ function App(props) {
         placeholder="고객 번호를 선택하세요"
         onChange={(e) => setCustomerId(e.target.value)}
       >
+        {customerIdList.map((id) => (
+          <option value={id}>{id}</option>
+        ))}
+
         {/*option[value=$]{$}*10*/}
         <option value="1">1</option>
         <option value="2">2</option>
