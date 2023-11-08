@@ -1,67 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Select, Box, Text, Spinner } from "@chakra-ui/react";
-import axios from "axios";
 
 function App(props) {
-  const [customerIdList, setCustomerIdList] = useState([]);
-  const [customerId, setCustomerId] = useState(0);
-  const [customer, setCustomer] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-
+  const [number, setNumber] = useState(0);
+  // useEffect 사용 시 자주하는 실수
   useEffect(() => {
-    //고객 번호들 가져오기, 번호는 처음 가져올때만 실행
-    axios
-      .get("/api/main1/sub6")
-      .then((response) => setCustomerIdList(response.data));
-  }, []);
+    console.log("코드 실행");
+    // setNumber(number + 1); // trigger하는 값을 변경하면 안 됨
+  }, [number]);
 
-  useEffect(() => {
-    setIsLoading(true);
-    axios
-      .get("/api/main1/sub4?id=" + customerId)
-      .then((response) => response.data)
-      .then((data) => setCustomer(data))
-      .catch((error) => setCustomer(null))
-      .finally(() => setIsLoading(false));
-  }, [customerId]);
-
-  return (
-    <div>
-      <Select
-        placeholder="고객 번호를 선택하세요"
-        onChange={(e) => setCustomerId(e.target.value)}
-      >
-        {customerIdList.map((id) => (
-          <option value={id}>{id}</option>
-        ))}
-
-        {/*option[value=$]{$}*10*/}
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-      </Select>
-      <Box>
-        {isLoading && <Spinner />}
-
-        {isLoading || (
-          <>
-            {customer === null ? (
-              <Text>조회한 고객이 없습니다. 다른 번호를 선택해주세요.</Text>
-            ) : (
-              <Text>고객 이름 : {customer.customerName}</Text>
-            )}
-          </>
-        )}
-      </Box>
-    </div>
-  );
+  return <div></div>;
 }
 
 export default App;
