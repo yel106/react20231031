@@ -45,30 +45,7 @@ function App(props) {
         {employeeIdList.map((id) => (
           <option value={id}>{id}</option>
         ))}
-        {/*<option value="1">1</option>*/}
-        {/*<option value="2">2</option>*/}
-        {/*<option value="3">3</option>*/}
-        {/*<option value="4">4</option>*/}
-        {/*<option value="5">5</option>*/}
-        {/*<option value="6">6</option>*/}
-        {/*<option value="7">7</option>*/}
-        {/*<option value="8">8</option>*/}
-        {/*<option value="9">9</option>*/}
-        {/*<option value="10">10</option>*/}
       </Select>
-
-      {/*<Box>*/}
-      {/*  {isLoading && <Spinner />}*/}
-      {/*  {isLoading || (*/}
-      {/*    <>*/}
-      {/*      {employee === null ? (*/}
-      {/*        <Text>조회한 고객이 없습니다. 다른 번호를 선택해주세요.</Text>*/}
-      {/*      ) : (*/}
-      {/*        <Text>{employee.firstName}</Text>*/}
-      {/*      )}*/}
-      {/*    </>*/}
-      {/*  )}*/}
-      {/*</Box>*/}
 
       <Box>{textContent}</Box>
     </div>
