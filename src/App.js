@@ -5,7 +5,7 @@ import axios from "axios";
 function App(props) {
   const [employeeIdList, setEmployeeIdList] = useState([]);
   const [employeeId, setEmployeeId] = useState(0);
-  const [employee, setEmployee] = useState({});
+  const [employee, setEmployee] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -57,18 +57,18 @@ function App(props) {
         {/*<option value="10">10</option>*/}
       </Select>
 
-      <Box>
-        {isLoading && <Spinner />}
-        {isLoading || (
-          <>
-            {employee === null ? (
-              <Text>조회한 고객이 없습니다. 다른 번호를 선택해주세요.</Text>
-            ) : (
-              <Text>{employee.firstName}</Text>
-            )}
-          </>
-        )}
-      </Box>
+      {/*<Box>*/}
+      {/*  {isLoading && <Spinner />}*/}
+      {/*  {isLoading || (*/}
+      {/*    <>*/}
+      {/*      {employee === null ? (*/}
+      {/*        <Text>조회한 고객이 없습니다. 다른 번호를 선택해주세요.</Text>*/}
+      {/*      ) : (*/}
+      {/*        <Text>{employee.firstName}</Text>*/}
+      {/*      )}*/}
+      {/*    </>*/}
+      {/*  )}*/}
+      {/*</Box>*/}
 
       <Box>{textContent}</Box>
     </div>
