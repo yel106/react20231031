@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { Button, Input, Text } from "@chakra-ui/react";
 
 function App(props) {
-  const [myState, setMyState] = useState("");
-
+  const [number, setNumber] = useState(0);
+  const [text, setText] = useState("");
+  //첫 번째 파라미터(setup): the function with your Effect's logic. 부작용이 있는 함수
+  //두 번째 파라미터: setup을 실행시키는 값. 빈 배열이면 첫 렌더링 때만 실행됨.
+  //                setup 코드 안에서 참조할 반응 값의 나열(배열)
   useEffect(() => {
-    //컴포넌트가 실행될때 처음 그려짐. axois요청이 날아감. 우리가 응답하는걸 안 만들어서 500코드 에러가 뜸.
-    axios
-      // 앞에 빠진 localhost:8080은 아까 프록시로 설정해둠
-      // api/main/sub1로 요청을 했고, 거기서 "hello boot app!!"을 return했기 때문에
-      // 로그창에 hello boot app라고 뜸
-      //setMyState(data) 라고 써야 재렌더링 될때 myState의 내용이 바뀜
-      .get("/api/main1/sub1")
-      .then((response) => response.data)
-      .then((data) => setMyState(data))
-      .catch((error) => console.log(error));
-  }, []);
+    console.log("effect 함수 실행됨");
+  }, [number, text]); //빈 배열이 아니면 첫 렌더링 이후에도 실행됨.
 
-  return <div>{myState}</div>;
+  return (
+    <div>
+      <Button onClick={() => setNumber(number + 1)}>증가</Button>
+      <Text>{number}</Text>
+      <Input value={text} onChange={(e) => setText(e.target.value)} />
+    </div>
+  );
 }
 
 export default App;
